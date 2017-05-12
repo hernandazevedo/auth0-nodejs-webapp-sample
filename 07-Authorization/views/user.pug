@@ -1,9 +1,12 @@
 extends layout
 
 block content
-  img(src="#{user.profile.picture}")
-  h2 Welcome #{user.profile.nickname}!
+  
+  h2 Bem vindo #{user.profile.nickname}!
+  
+  <img src="#{user.profile.picture}" height="58" width="58">
+  </img>
   br
-  a(href='/admin') Admin Panel
+  a(href='/admin') Painel Admin
   br
-  a(href='/logout') Log Out
+  a(href='/logout') Sair

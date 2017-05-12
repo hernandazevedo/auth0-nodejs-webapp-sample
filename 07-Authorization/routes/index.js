@@ -7,12 +7,12 @@ var router = express.Router();
 var env = {
   AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
   AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
-  AUTH0_CALLBACK_URL: process.env.AUTH0_CALLBACK_URL || 'http://localhost/callback'
+  AUTH0_CALLBACK_URL: process.env.REMOTE_ADDR_CALLBACK || process.env.AUTH0_CALLBACK_URL || 'http://autent.devhernand.com/callback'
 };
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', env: env });
+  res.render('index', { title: 'Login', env: env ,static_path: 'public'});
 });
 
 router.get('/login',
@@ -36,11 +36,11 @@ router.get('/callback',
 router.get('/admin',
   requireRole('admin'),
   function(req, res) {
-    res.render('admin');
+    res.render('admin', {static_path: 'public'});
   });
 
 router.get('/unauthorized', function(req, res) {
-  res.render('unauthorized', {env: env});
+  res.render('unauthorized', {env: env,static_path: 'public'});
 });
 
 
